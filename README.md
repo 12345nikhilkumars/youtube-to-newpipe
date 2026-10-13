@@ -1,6 +1,7 @@
 # YouTube to NewPipe Subscription Extractor
 
 It was built for personal use, shared for like minded people
+
 Export your full YouTube subscription list as a NewPipe-compatible JSON file.
 
 ## Chrome
