@@ -103,3 +103,7 @@ and run `python3 tools/embed.py`.
 ```bash
 bun tools/check-manager.js && bun tools/check-launchers.js && bun tools/check-three-buttons.js
 ```
+
+## License
+
+GNU Affero General Public License v3.0 (AGPL-3.0). See [LICENSE](LICENSE).
