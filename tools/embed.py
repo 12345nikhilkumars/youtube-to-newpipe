@@ -39,6 +39,7 @@ def main():
         + "// Usage: open youtube.com/feed/channel_manager, F12, paste this file into the console.\n"
         + core,
         "extension/yt2np.js": BANNER + 'globalThis.__YT2NP_MODE__ = "return";\n' + core,
+        "extension-firefox/yt2np.js": BANNER + 'globalThis.__YT2NP_MODE__ = "return";\n' + core,
     }
     for name, content in outputs.items():
         path = ROOT / name

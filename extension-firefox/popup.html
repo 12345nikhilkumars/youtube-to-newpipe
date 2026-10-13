@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #181818;
+      --fg: #fff;
+      --muted: #aaa;
+      --surface: #282828;
+      --border: #3a3a3a;
+      --accent: #ff0000;
+      --accent-hover: #cc0000;
+      --success: #4caf50;
+      --error: #f44336;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fff; --fg: #0f0f0f; --muted: #606060;
+        --surface: #f2f2f2; --border: #d9d9d9;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      width: 340px;
+      padding: 16px;
+      margin: 0;
+      font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    h1 { font-size: 15px; margin: 0 0 12px; letter-spacing: .01em; }
+    h1 span { color: var(--accent); }
+
+    .button, .download-link {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 0 0 8px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .button:hover, .download-link:hover { background: var(--accent-hover); }
+    .button:disabled { background: var(--border); color: var(--muted); cursor: default; }
+    .button:focus-visible, .download-link:focus-visible {
+      outline: 2px solid var(--fg);
+      outline-offset: 2px;
+    }
+    .secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      font-weight: 500;
+    }
+    .secondary:hover { background: var(--surface); }
+
+    .status, .count {
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin: 0 0 8px;
+      color: var(--muted);
+    }
+    .status[hidden], .download-link[hidden], .count[hidden] { display: none; }
+    .status.success { color: var(--success); }
+    .status.error { color: var(--error); }
+
+    /* Steps: numbered, one line each, so the order is obvious at a glance. */
+    ol.steps {
+      margin: 12px 0 0;
+      padding: 0 0 0 18px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    ol.steps li { margin-bottom: 4px; }
+    ol.steps strong { color: var(--fg); font-weight: 600; }
+    ol.steps em { font-style: normal; color: var(--fg); }
+
+    details {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    details summary {
+      cursor: pointer;
+      color: var(--muted);
+      padding: 4px 0;
+    }
+    details summary:hover { color: var(--fg); }
+    details p { margin: 6px 0 0; line-height: 1.5; }
+    code {
+      font: 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>YouTube <span>&rarr;</span> NewPipe</h1>
+
+  <div id="status" class="status" role="status" hidden></div>
+  <div id="count" class="count" hidden></div>
+
+  <button id="handlesBtn" class="button" type="button">JSON with handles</button>
+  <button id="idsBtn" class="button" type="button">JSON with resolved IDs</button>
+  <button id="csvBtn" class="button secondary" type="button">CSV in Takeout format</button>
+
+  <ol class="steps">
+    <li><strong>JSON with handles</strong> is quickest. Importable in NewPipe through
+      <em>Import from &rarr; Previous export</em>.</li>
+    <li><strong>JSON with resolved IDs</strong> also looks up each <code>UC…</code> id. Takes
+      about 10 seconds for 950 channels. This is the format every importer accepts.</li>
+    <li><strong>CSV</strong> gives the same resolved ids as Google Takeout's
+      <code>subscriptions.csv</code>.</li>
+    <li>Each button does the whole job itself. Nothing needs pressing first, and repeat clicks
+      reuse what was already fetched.</li>
+  </ol>
+
+  <details>
+    <summary>Which file do I import?</summary>
+    <p>
+      In NewPipe: <em>Settings &rarr; Content &rarr; Import/Export &rarr; Import from &rarr; Previous
+      export</em>, then choose the <strong>JSON</strong> file.
+    </p>
+    <p>
+      The <strong>CSV</strong> is Google Takeout's <code>subscriptions.csv</code> format, for tools
+      that expect Takeout, or for NewPipe's <em>Takeout</em> import.
+    </p>
+    <p>
+      Takeout-based importers need <code>UC…</code> ids, which is what the CSV and the resolved
+      JSON provide. The handle JSON carries <code>@handle</code> URLs instead and is for NewPipe's
+      own import.
+    </p>
+  </details>
+
+  <script src="popup.js"></script>
+</body>
+</html>

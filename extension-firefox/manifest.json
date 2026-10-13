@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube to NewPipe Subscription Extractor",
+  "version": "2.0",
+  "description": "Export your YouTube subscriptions as a NewPipe-compatible JSON file.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "youtube-to-newpipe@extractor.local",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png"
+    },
+    "default_title": "Export YouTube subscriptions for NewPipe"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

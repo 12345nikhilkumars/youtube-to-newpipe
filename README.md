@@ -29,9 +29,9 @@ Nothing is scraped over the network and no separate service is contacted.
 ## Firefox
 
 1. Open `about:debugging#/runtime/this-firefox`
-2. **Load Temporary Add-on…** -> pick `extension/manifest.json`
+2. **Load Temporary Add-on…** -> pick `extension-firefox/manifest.json` (or `youtube-to-newpipe-firefox.zip`)
 
-The same manifest works on both browsers (MV3).
+Firefox build requires minimum Firefox 142 and sets data collection permissions.
 
 ## Bookmarklet
 
